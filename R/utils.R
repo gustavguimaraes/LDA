@@ -1,6 +1,6 @@
 
-
-
+library(tidyverse)
+theme_minimal()
 ## Themes
 {
   theme_minimal_btt<-function(){
@@ -99,7 +99,6 @@ laranja_sarto<-function() "#F88A27"
   }
   
   wd<-function(){
-    if(set_wd==1){
       if(.Platform$GUI=="RStudio"){
         library(rstudioapi)
         if(getActiveDocumentContext()$path==""){
@@ -112,7 +111,6 @@ laranja_sarto<-function() "#F88A27"
       }else{
         setwd(tcltk::tk_choose.dir(caption = "Select WD"))
       }
-    }
   }
   
   
