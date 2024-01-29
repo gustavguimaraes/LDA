@@ -200,7 +200,10 @@ laranja_sarto<-function() "#F88A27"
   exec_fun<-function(x,.fun){
     .fun(x)
   }
-  
+  st_rename<-function(x,name){
+  st_geometry(x)<-name
+  return(x)
+}
 }
 
   
