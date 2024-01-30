@@ -5,7 +5,7 @@ Version: 0.1.0
 Author: Gustavo Guimarães
 Maintainer: Gustavo Guimarães <gustavo234guimaraes@gmail.com>
 Description: Really?
-Imports: sf, rjson, data.table, tidylog, lubridate, plotly, tidyverse, rstudioapi, readxl, scales, ggrepel, ggpmisc, hrbrthemes, ggpubr, shadowtext, flextable
+Depends: sf, rjson, data.table, tidylog, lubridate, plotly, tidyverse, rstudioapi, readxl, scales, ggrepel, ggpmisc, hrbrthemes, ggpubr, shadowtext, flextable
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
