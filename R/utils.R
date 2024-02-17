@@ -138,7 +138,7 @@ laranja_sarto<-function() "#F88A27"
     return()
   }
   
-  make_gif<-function(image_paths,out_path=paste0(getwd(),"/gif.gif"),delay=1,density,density=NULL){
+  make_gif<-function(image_paths,out_path=paste0(getwd(),"/gif.gif"),delay=1,density=NULL){
     lapply(image_paths, magick::image_read,density=density) %>% 
       magick::image_join() %>% 
       magick::image_write_gif(path = out_path,delay=delay)
