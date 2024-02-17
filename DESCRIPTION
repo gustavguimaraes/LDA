@@ -1,7 +1,7 @@
 Package: LDA
 Type: Package
 Title: Load data analysis.
-Version: 0.1.0
+Version: 0.1.1
 Author: Gustavo Guimarães
 Maintainer: Gustavo Guimarães <gustavo234guimaraes@gmail.com>
 Description: Really?
