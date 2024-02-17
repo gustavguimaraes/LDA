@@ -3,69 +3,69 @@ library(tidyverse)
 theme_minimal()
 ## Themes
 {
-  theme_minimal_btt<-function(){
+  theme_minimal_btt<-function(sz=16){
     theme_minimal()+
       theme(
         panel.grid = element_blank(),
-        axis.text = element_text(color="black",size=12),
+        axis.text = element_text(color="black",size=round(0.75*sz,0)),
         text = element_text(family = font_tw),
-        title = element_text(size=16,face="bold"),
-        axis.title = element_text(size=14,face="bold"),
-        legend.text = element_text(color="black",size=12),
-        strip.text = element_text(family = font_tw,size = 14,color = "black",face = "bold")
+        title = element_text(size=sz,face="bold"),
+        axis.title = element_text(size=round(0.875*sz,0),face="bold"),
+        legend.text = element_text(color="black",size=round(0.75*sz,0)),
+        strip.text = element_text(family = font_tw,size = round(0.875*sz,0),color = "black",face = "bold")
       )
   }
   
   
-theme_minimal_tt<-function(){
+theme_minimal_tt<-function(sz=16){
     theme_minimal()+
       theme(
-        axis.text = element_text(color="black",size=12),
+        axis.text = element_text(color="black",size=round(0.75*sz,0)),
         text = element_text(family = font_tw),
-        title = element_text(size=16,face="bold"),
-        axis.title = element_text(size=14,face="bold"),
-        legend.text = element_text(color="black",size=12),
-        strip.text = element_text(family = font_tw,size = 14,color = "black",face = "bold")
+        title = element_text(size=sz,face="bold"),
+        axis.title = element_text(size=round(0.875*sz,0),face="bold"),
+        legend.text = element_text(color="black",size=round(0.75*sz,0)),
+        strip.text = element_text(family = font_tw,size = round(0.875*sz,0),color = "black",face = "bold")
       )
 }
 
 
-theme_tt<-function(){
+theme_tt<-function(sz=16){
   theme(
-    axis.text = element_text(color="black",size=12),
+    axis.text = element_text(color="black",size=round(0.75*sz,0)),
     text = element_text(family = font_tw),
-    title = element_text(size=16,face="bold"),
-    axis.title = element_text(size=14,face="bold"),
-    legend.text = element_text(color="black",size=12),
-    strip.text = element_text(family = font_tw,size = 14,color = "black",face = "bold")
+    title = element_text(size=sz,face="bold"),
+    axis.title = element_text(size=round(0.875*sz,0),face="bold"),
+    legend.text = element_text(color="black",size=round(0.75*sz,0)),
+    strip.text = element_text(family = font_tw,size = round(0.875*sz,0),color = "black",face = "bold")
   )
 }
 
-theme_minimal_bttx<-function(){
+theme_minimal_bttx<-function(sz=16){
   theme_minimal()+
     theme(
       panel.grid = element_blank(),
-      axis.text = element_text(color="black",size=12),
+      axis.text = element_text(color="black",size=round(0.75*sz,0)),
       axis.text.x = element_text(angle = 45),
       text = element_text(family = font_tw),
-      title = element_text(size=16,face="bold"),
-      axis.title = element_text(size=14,face="bold"),
-      legend.text = element_text(color="black",size=12),
-      strip.text = element_text(family = font_tw,size = 14,color = "black",face = "bold")
+      title = element_text(size=sz,face="bold"),
+      axis.title = element_text(size=round(0.875*sz,0),face="bold"),
+      legend.text = element_text(color="black",size=round(0.75*sz,0)),
+      strip.text = element_text(family = font_tw,size = round(0.875*sz,0),color = "black",face = "bold")
     )
 }
 
 
-theme_minimal_ttx<-function(){
+theme_minimal_ttx<-function(sz=16){
   theme_minimal()+
     theme(
-      axis.text = element_text(color="black",size=12),
+      axis.text = element_text(color="black",size=round(0.75*sz,0)),
       axis.text.x = element_text(angle = 45),
       text = element_text(family = font_tw),
-      title = element_text(size=16,face="bold"),
-      axis.title = element_text(size=14,face="bold"),
-      legend.text = element_text(color="black",size=12),
-      strip.text = element_text(family = font_tw,size = 14,color = "black",face = "bold")
+      title = element_text(size=sz,face="bold"),
+      axis.title = element_text(size=round(0.875*sz,0),face="bold"),
+      legend.text = element_text(color="black",size=round(0.75*sz,0)),
+      strip.text = element_text(family = font_tw,size = round(0.875*sz,0),color = "black",face = "bold")
     )
 }
 
@@ -126,7 +126,7 @@ laranja_sarto<-function() "#F88A27"
   }
   
   
-  make_gif<-function(plots,path,delay=2){
+  make_plot_gif<-function(plots,path,delay=2){
     images<-lapply(plots, function(x){
       file<-tempfile(fileext=".jpg")
       ggsave(file,plot=x,width = 3200,height = 2300,units = "px",dpi=300)
@@ -137,6 +137,13 @@ laranja_sarto<-function() "#F88A27"
     invisible(magick::image_write_gif(images,path=path,delay=delay))
     return()
   }
+  
+  make_gif<-function(image_paths,out_path=paste0(getwd(),"/gif.gif"),delay=1,density,density=NULL){
+    lapply(image_paths, magick::image_read,density=density) %>% 
+      magick::image_join() %>% 
+      magick::image_write_gif(path = out_path,delay=delay)
+  }
+  
   
   get_TM<-function(gtfs_obj){
     shapes_as_sf(gtfs_obj$shapes,crs=4326) %>% 
@@ -200,10 +207,7 @@ laranja_sarto<-function() "#F88A27"
   exec_fun<-function(x,.fun){
     .fun(x)
   }
-  st_rename<-function(x,name){
-  st_geometry(x)<-name
-  return(x)
-}
+  
 }
 
   
