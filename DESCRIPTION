@@ -5,6 +5,7 @@ Version: 0.1.1
 Author: Gustavo Guimarães
 Maintainer: Gustavo Guimarães <gustavo234guimaraes@gmail.com>
 Description: Really?
+Imports: KeyboardSimulator
 Depends: sf, rjson, data.table, tidylog, lubridate, plotly, tidyverse, rstudioapi, readxl, scales, ggrepel, ggpmisc, hrbrthemes, ggpubr, shadowtext, flextable
 License: What license is it under?
 Encoding: UTF-8

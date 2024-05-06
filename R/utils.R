@@ -210,4 +210,64 @@ laranja_sarto<-function() "#F88A27"
   
 }
 
+
+file2clip <- function(fpath){
+  if(!file.exists(fpath)){
+    stop(paste("The file",fpath,"doesn't exist."))
+  }else{
+    fpath<-suppressWarnings(try(normalizePath(fpath)))
+    system(
+      paste0(
+        'powershell "Set-Clipboard -Path \'',
+        fpath,
+        '\'"'
+      ),
+      intern = T,minimized = F
+    )
+  }
+  
+  
+}
+
+
+zap_message <- function( text = '', phone_number = NULL,
+                         file = NULL){
+  
+  if(length(text)>1){
+    warning("Text string with a length greater than 1, using the first item.")
+    text<-text[1]
+  }
+  if(is.null(phone_number)){
+    stop("Invalid number")
+  }else{
+    script<-paste0(
+      'start whatsapp://"send?phone=',
+      phone_number,
+      "&text=",
+      str_replace_all(text," ","%20"),
+      '"'
+    )
+    if(is.null(file)){
+      shell(script)
+      Sys.sleep(2)
+      KeyboardSimulator::keybd.press("enter")
+    }else{
+      shell(script)
+      Sys.sleep(1.5)
+      file2clip(file)
+      KeyboardSimulator::keybd.press("ctrl",hold = T)
+      KeyboardSimulator::keybd.type_string("v")
+      KeyboardSimulator::keybd.release("ctrl")
+      Sys.sleep(2)
+      KeyboardSimulator::keybd.press("enter")
+    }
+    
+  }
+  
+  
+}
+
+
+
+
   
