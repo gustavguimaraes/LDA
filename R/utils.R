@@ -101,15 +101,11 @@ laranja_sarto<-function() "#F88A27"
   wd<-function(){
       if(.Platform$GUI=="RStudio"){
         library(rstudioapi)
-        if(getActiveDocumentContext()$path==""){
-          setwd(enc2utf8(selectDirectory(caption = "Select WD")))
-        }else{
-          getActiveDocumentContext()$path %>%
+        getActiveDocumentContext()$path %>%
             dirname() %>%
             setwd()
-        }
       }else{
-        setwd(tcltk::tk_choose.dir(caption = "Select WD"))
+        #setwd(tcltk::tk_choose.dir(caption = "Select WD"))
       }
   }
   
