@@ -268,6 +268,8 @@ zap_message <- function( text = '', phone_number = NULL,
 }
 
 
-
+Filter2 <- function(x,f,...){
+  x[f(x,...)]
+}
 
   
