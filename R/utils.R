@@ -1,6 +1,6 @@
 
 library(tidyverse)
-theme_minimal()
+font_tw <-  'Titillium Web'
 ## Themes
 {
   theme_minimal_btt<-function(sz=16){
