@@ -29,6 +29,7 @@ theme_minimal_tt<-function(sz=16){
       )
 }
 
+font_tw <-  'Titillium Web'
 
 theme_tt<-function(sz=16){
   theme(
